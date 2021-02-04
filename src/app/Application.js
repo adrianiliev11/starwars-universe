@@ -6,7 +6,7 @@ import StarWarsUniverse from '../app/custom/StarWarsUniverse';
 const EVENTS = {
   APP_READY: 'app_ready',
 };
-
+const swuniverse = new StarWarsUniverse();
 /**
  * App entry point.
  * All configurations are described in src/config.js
@@ -14,12 +14,11 @@ const EVENTS = {
 export default class Application extends EventEmitter {
   constructor() {
     super();
-
+    this.init();
     this.config = config;
     this.data = {
-      universe: swuniverse
+      universe: swuniverse.entities
     };
-    this.init();
   }
 
   static get events() {
@@ -34,7 +33,6 @@ export default class Application extends EventEmitter {
    */
   async init() {
     // Initiate classes and wait for async operations here.
-    const swuniverse = new StarWarsUniverse();
     const data = await swuniverse.init();
     this.emit(Application.events.APP_READY);
     return data;
