@@ -33,8 +33,8 @@ export default class Application extends EventEmitter {
    */
   async init() {
     // Initiate classes and wait for async operations here.
-    const data = await swuniverse.init();
     this.emit(Application.events.APP_READY);
+    const data = await swuniverse.init();
     return data;
   }
 }
