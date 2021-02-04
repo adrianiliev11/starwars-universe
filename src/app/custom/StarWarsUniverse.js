@@ -2,7 +2,7 @@ import Entity from '../custom/Entity';
 
 export default class StarWarsUniverse{
     constructor(){
-        this.entities = this.init().then(response => this.entities = response)
+        this.entities = this.init();
     }
     async init(){
       const response = await fetch('https://swapi.booost.bg/api/');
