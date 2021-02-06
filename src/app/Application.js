@@ -16,7 +16,7 @@ export default class Application extends EventEmitter {
     super();
     this.config = config;
     this.data = {
-      universe: swuniverse.entities
+      universe: swuniverse
     };
     this.init();
   }
