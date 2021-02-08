@@ -3,7 +3,7 @@ import Entity from '../custom/Entity';
 export default class StarWarsUniverse{
     constructor(){
       this.entities = [];
-      this.init().then(response => this.entities = response.data);
+      this.init().then(response => this.entities = response);
     }
     async init(){
       const response = await fetch('https://swapi.booost.bg/api/');
@@ -14,10 +14,9 @@ export default class StarWarsUniverse{
           const entity = new Entity(arrayEntities[`${i}`][0], arrayEntities[`${i}`][1]);
           results = results.concat(entity);
       }
-      let finalResults = {
-        data: results,
-        count: 6
-      }
-      return finalResults;
+      results.forEach(element => {
+        fetch(element.data).then(data => data.json()).then(response => element.data = response)
+      })
+      return results;
     }
   }
